@@ -30,3 +30,14 @@ cd virtual-assistant-gpt3
 ```shell
 OPENAI_API_KEY=your_api_key_here
 ```
+
+## Usage
+1. Run the python script
+```shell
+git clone https://github.com/yourusername/virtual-assistant-gpt3.git
+cd virtual-assistant-gpt3
+```
+2. Interact with the Assistant:
+Start typing your queries and receive responses in real-time.
+
+

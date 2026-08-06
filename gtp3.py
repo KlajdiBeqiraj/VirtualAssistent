@@ -1,8 +1,11 @@
+import os
+
 import openai
 
+
 def GPT_Completion(texts):
-    ## Call the API key under your account (in a secure way)
-    openai.api_key = "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"
+    # Read the key from the environment. Never hard-code credentials in source.
+    openai.api_key = os.environ["OPENAI_API_KEY"]
     response = openai.Completion.create(
         engine="text-davinci-002",
         prompt=texts,

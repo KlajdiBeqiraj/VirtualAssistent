@@ -1,43 +1,41 @@
-# Virtual Assistant with GPT-3 from OpenAI
+# Virtual Assistant with GPT-3
 
-## Overview
-This project demonstrates how to create a virtual assistant using OpenAI's GPT-3 API. The assistant can understand and respond to natural language queries, making it useful for various applications such as customer support, scheduling, and information retrieval.
+A voice-driven assistant built in **December 2022**, a few weeks after the ChatGPT launch, using
+OpenAI's GPT-3 completions API. Speech in, completion, speech out.
 
-## Features
-1. **Natural Language Understanding**: Leverages GPT-3's language model to comprehend user inputs.
-2. **Dynamic Responses**: Provides contextually relevant answers based on the input queries.
-3. **Scalability**: Can be integrated into different platforms like websites, mobile apps, and chatbots.
+Kept here as a dated artifact rather than a maintained project. Companion write-up:
+[Virtual assistant with GPT-3 from OpenAI](https://medium.com/@BeckzKla).
 
-## Getting Started
-### Prerequisites
-1. API Key: Obtain an API key from OpenAI by signing up on their platform.
-2. Programming Language: Knowledge of Python (or the language used in the project).
-3. Development Environment: Set up a development environment with necessary libraries installed.
+## How it works
 
-### Installation
-1. Clone the Repository:
-```shell
-git clone https://github.com/yourusername/virtual-assistant-gpt3.git
-cd virtual-assistant-gpt3
+```
+microphone -> speech-to-text -> GPT-3 completion -> text-to-speech -> speaker
 ```
 
-2. Install dependecies
-```shell
- pip install -r requirements.txt
+| File | Role |
+|---|---|
+| `main.py` | Entry point: capture, completion, playback loop |
+| `speech_to_text.py` | Microphone capture, transcription via Google Speech Recognition |
+| `gtp3.py` | GPT-3 completion call |
+| `text_to_speech.py` | Speech synthesis via gTTS, with a pyttsx3/SAPI5 alternative |
+
+## Status
+
+**Not runnable as-is.** The code targets the legacy Completions endpoint with `text-davinci-002`,
+which OpenAI retired in January 2024, and the audio playback path is Windows-only. It is left
+public unchanged because it is the earliest dated example of my work with large language models:
+porting it to the current Chat Completions API is the exercise, not the artifact.
+
+## Running it, if you port it
+
+Windows, Python 3, and an OpenAI API key in the environment:
+
+```
+git clone https://github.com/KlajdiBeqiraj/VirtualAssistent.git
+cd VirtualAssistent
+pip install -r requirements.txt
+setx OPENAI_API_KEY sk-...
+python main.py
 ```
 
-3. Set Up Environment Variables
-```shell
-OPENAI_API_KEY=your_api_key_here
-```
-
-## Usage
-1. Run the python script
-```shell
-git clone https://github.com/yourusername/virtual-assistant-gpt3.git
-cd virtual-assistant-gpt3
-```
-2. Interact with the Assistant:
-Start typing your queries and receive responses in real-time.
-
-
+Speak when prompted; the assistant transcribes, completes and reads the answer back.
